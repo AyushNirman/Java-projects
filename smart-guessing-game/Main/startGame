@@ -1,0 +1,75 @@
+import java.util.Random;
+import java.util.Scanner;
+
+public class SmartGuessingGame  {
+
+    public static void startGame(Scanner sc){
+
+        char choice;
+
+        do {
+
+            Random random= new Random();
+
+            System.out.println("Choose the level: 1-Easy   2.Medium  3.Hard");
+
+            int maxRange = 100;
+            int attempts = 7;
+
+            int level= sc.nextInt();
+
+            if (level==1){
+                maxRange=50;
+                attempts=10;
+            } else if (level==2) {
+                maxRange=100;
+                attempts=7;
+            } else if (level==3) {
+                maxRange=200;
+                attempts=5;
+            }
+            else {
+                System.out.println("choose the correct level: ");
+                break;
+            }
+
+            int secretNumber=random.nextInt(maxRange)+1;
+            boolean isGuess=false;
+
+            while(attempts>0){
+
+                System.out.println("Guess a number between 1 and "+maxRange+": ");
+                int guess=sc.nextInt();
+                attempts--;
+                if (guess==secretNumber) {
+                    System.out.println("Correct guess");
+                    isGuess=true;
+                    break;
+                }
+                else if (guess>secretNumber) {
+                    System.out.println("Too high");
+                }
+                else {
+                    System.out.println("Too low");
+                }
+                System.out.println("Remaining attempts: " + attempts);
+            }
+
+            if (!isGuess){
+                System.out.println("You loose ! Number was: "+secretNumber);
+            }
+
+            else{
+                int score = attempts*10;
+                System.out.println("Your score: " + score);
+            }
+
+            System.out.println("play again? (Y/N): ");
+            choice=sc.next().charAt(0);
+        }while (choice=='Y'||choice=='y');
+
+
+
+
+    }
+}
