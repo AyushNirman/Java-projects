@@ -1,0 +1,106 @@
+import java.util.Scanner; 
+// Scanner class import -> user se input lene ke liye
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        // Scanner object banaya -> keyboard input ke liye
+
+        int choice;
+        // menu ka option store karne ke liye variable
+
+        do {
+            // do-while -> menu kam se kam 1 baar chalega
+
+            System.out.println("\n1.Print table");
+            System.out.println("2.Reverse number");
+            System.out.println("3.Count digits");
+            System.out.println("4.Exit");
+
+            choice = sc.nextInt();
+            // user ka choice input
+
+            // -------- OPTION 1 : PRINT TABLE --------
+            if (choice == 1) {
+
+                int n = sc.nextInt();
+                // table kis number ki print karni hai
+
+                for (int i = 1; i <= 10; i++) {
+                    // for loop -> fixed 10 times chalega
+                    System.out.println(n * i);
+                    // n ka table print
+                }
+            }
+
+            // -------- OPTION 2 : REVERSE NUMBER --------
+            else if (choice == 2) {
+
+                int num = sc.nextInt();
+                // user se number input
+
+                int temp = Math.abs(num);
+                // negative number ko positive banaya
+
+                int rev = 0;
+                // reversed number store karega
+
+                while (temp != 0) {
+                    // jab tak number 0 na ho
+
+                    rev = rev * 10 + temp % 10;
+                    // last digit nikali aur reverse banaya
+
+                    temp = temp / 10;
+                    // last digit hata di
+                }
+
+                if (num < 0)
+                    rev = -rev;
+                // agar original number negative tha
+                // to reverse ko bhi negative bana diya
+
+                System.out.println(rev);
+                // reversed number print
+            }
+
+            // -------- OPTION 3 : COUNT DIGITS --------
+            else if (choice == 3) {
+
+                int num = sc.nextInt();
+                // number input
+
+                if (num == 0) {
+                    // special case
+                    System.out.println(1);
+                    // 0 ke digits = 1
+                } 
+                else {
+                    int temp = Math.abs(num);
+                    // negative handle
+
+                    int count = 0;
+                    // digit count store karega
+
+                    while (temp != 0) {
+                        count++;
+                        // har digit ke liye count increase
+                        temp = temp / 10;
+                        // ek digit remove
+                    }
+
+                    System.out.println(count);
+                    // total digits print
+                }
+            }
+
+            // -------- INVALID OPTION --------
+            else if (choice != 4) {
+                System.out.println("Invalid choice");
+            }
+
+        } while (choice != 4);
+        // jab tak user Exit (4) nahi karta
+    }
+}
